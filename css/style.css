@@ -3061,3 +3061,52 @@ opacity:.7;
         display: none;
     }
 }
+
+/* --- CORRECCIÓN DEFINITIVA PARA MÓVILES --- */
+@media screen and (max-width: 850px) {
+    
+    /* 1. Aseguramos que el cuerpo permita el desplazamiento */
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    /* 2. Cambiamos el comportamiento de las escenas: 
+          Dejamos de fijarlas (absolute) para que el navegador 
+          entienda que el contenido es alto y debe desplazarse. */
+    .scene {
+        position: relative !important; 
+        min-height: 100vh !important;
+        height: auto !important; 
+        padding: 40px 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; 
+        align-items: center !important;
+    }
+
+    /* 3. Liberamos los paneles de cualquier límite de altura */
+    .panel, 
+    .birthday-panel, 
+    .completion-panel {
+        width: 95% !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 20px auto !important;
+        padding: 25px 15px !important;
+    }
+
+    /* 4. Ajustes específicos para modo horizontal (Landscape) */
+    @media (orientation: landscape) {
+        .scene {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+        }
+        .birthday-text {
+            font-size: 14px !important; /* Un poco más pequeño para leer mejor en horizontal */
+            line-height: 1.5 !important;
+        }
+    }
+}
