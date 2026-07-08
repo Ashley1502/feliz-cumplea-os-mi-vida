@@ -2824,223 +2824,50 @@ opacity:.7;
 }
 
 /* =========================
-   ADAPTACIÓN PARA CELULARES
+   ADAPTACIÓN PARA CELULARES (CORREGIDA)
 ========================= */
-
-@media screen and (max-width:768px){
-
-
-    body{
-
-        overflow-x:hidden;
-        overflow-y:auto;
-        width:100%;
-
-    }
-
-
-
-    .scene{
-
-        position:absolute;
-
-        inset:0;
-
-        min-height:100vh;
-
-        height:auto;
-
-        padding:25px 15px;
-
-        justify-content:flex-start;
-
-        overflow-y:auto;
-
-    }
-
-
-
-    .panel,
-    .birthday-panel,
-    .completion-panel{
-
-        width:90% !important;
-
-        margin:0 auto;
-
-        max-height:none;
-
-        overflow:visible;
-
-        padding:35px 20px !important;
-
-    }
-
-
-
-    h1{
-
-        font-size:2rem !important;
-
-    }
-
-
-
-    h2{
-
-        font-size:22px;
-
-    }
-
-
-
-    h3{
-
-        font-size:55px;
-
-    }
-
-
-
-    .birthday-text{
-
-        font-size:16px;
-
-        line-height:1.7;
-
-    }
-
-
-
-    #scene5{
-
-        justify-content:flex-start;
-
-        padding-top:40px;
-
-        overflow-y:auto;
-
-    }
-
-
-
-    .birthday-panel{
-
-        max-height:85vh;
-
-        overflow-y:auto;
-
-    }
-
-
-
-    .map-title{
-
-        font-size:32px !important;
-
-    }
-
-
-
-    .map-subtitle{
-
-        font-size:15px;
-
-        margin-bottom:20px;
-
-    }
-
-
-
-    .constellation-container{
-
-        width:700px;
-
-        height:450px;
-
-        transform:scale(.55);
-
-        transform-origin:center top;
-
-    }
-
-
-}
-
-/* --- BLOQUE ÚNICO Y CORREGIDO PARA MÓVILES --- */
-@media screen and (max-width: 850px) {
-    /* 1. Permitimos que el cuerpo sea scrollable */
+@media screen and (max-width: 768px) {
+    /* 1. Bloquea el scroll de la página completa */
     body {
-        overflow-y: auto !important;
-        height: auto !important;
+        overflow: hidden !important;
+        height: 100vh !important;
+        margin: 0;
     }
 
-    /* 2. EL CAMBIO CLAVE: Cambiamos 'absolute' a 'relative' aquí dentro */
+    /* 2. Escenas a pantalla completa y centradas */
     .scene {
-        position: relative !important; 
-        min-height: 100vh !important;
-        height: auto !important; 
-        padding: 60px 15px !important;
-        justify-content: flex-start !important; /* Para que el texto no esté perdido */
+        position: absolute !important;
+        inset: 0 !important;
+        height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: hidden !important; 
     }
 
-    /* 3. Liberamos los paneles de límites rígidos */
-    .panel, .birthday-panel, .completion-panel, .dialogue-panel {
-        width: 95% !important;
-        height: auto !important;
-        max-height: none !important;
-        margin: 20px auto !important;
+    /* 3. Paneles con scroll interno (para leer texto largo) */
+    .panel, 
+    .dialogue-panel, 
+    .birthday-panel, 
+    .completion-panel {
+        max-height: 70vh !important; 
+        overflow-y: auto !important; 
+        -webkit-overflow-scrolling: touch; 
+        width: 90% !important;
+        margin: 10px auto !important;
         padding: 20px !important;
     }
 
-    /* 4. Ajuste visual de la constelación para que quepa */
+    /* 4. Ajustes visuales para que quepa todo */
+    h1 { font-size: 1.5rem !important; }
+    h2 { font-size: 18px !important; }
+    h3 { font-size: 35px !important; }
+    
     .constellation-container {
         transform: scale(0.5) !important;
-        margin-top: 20px !important;
+        transform-origin: center center;
     }
-}
-
-@media screen and (max-width: 850px) {
-    /* Permitir que la escena se estire según su contenido */
-    .scene {
-        position: relative !important;
-        min-height: 100vh !important;
-        height: auto !important;
-        justify-content: flex-start !important; /* El texto empieza arriba */
-        padding-top: 80px !important; /* Espacio para que no choque con el HUD */
-        overflow-y: visible !important; /* Permite scroll natural */
-    }
-}
-
-@media screen and (max-width: 850px) {
-    /* Habilitar scroll interno en el panel */
-    .panel, .birthday-panel, .completion-panel {
-        width: 90% !important;
-        height: auto !important; /* Se ajusta al texto */
-        max-height: 70vh !important; /* Nunca pasará del 70% de la pantalla */
-        overflow-y: auto !important; /* Si el texto es largo, aquí aparecerá la barra de scroll */
-        padding: 20px !important;
-        margin: 20px auto !important;
-    }
-}
-
-@media screen and (max-width: 850px) {
-    /* 1. Centrar todo verticalmente en lugar de pegarlo al tope */
-    .scene {
-        justify-content: center !important; 
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-    }
-
-    /* 2. Reducir el espacio debajo del título/subtítulo */
-    .map-subtitle {
-        margin-bottom: 20px !important; 
-    }
-
-    /* 3. Eliminar el margen superior de la constelación para que suba */
-    .constellation-container {
-        margin-top: 0px !important;
-        /* Si sientes que sigue siendo muy grande, ajusta un poco este scale */
-        transform: scale(0.6) !important; 
-    }
+    
+    .map-subtitle { font-size: 14px !important; }
 }
