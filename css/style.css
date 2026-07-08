@@ -3110,3 +3110,40 @@ opacity:.7;
         }
     }
 }
+
+/* --- CORRECCIÓN FINAL: Permitir scroll y contenido fluido --- */
+
+/* 1. Asegurar que el cuerpo de la página pueda desplazarse */
+body {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* 2. Convertir las escenas de 'absolute' a 'relative' para que sigan el flujo del documento */
+.scene {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: visible !important; /* Permite que el contenido se extienda */
+    padding-bottom: 50px !important;
+}
+
+/* 3. Ajustar paneles y diálogos para que sean scrollables si el texto es largo */
+.panel, 
+.dialogue-panel, 
+.completion-panel,
+.birthday-panel {
+    position: relative !important;
+    height: auto !important;
+    max-height: 80vh !important; /* Si el texto es gigante, el panel podrá hacerse scroll */
+    overflow-y: auto !important; /* ¡ESTO ES LO QUE ARREGLA EL VIDEO 3! */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iPhone/Android */
+}
+
+/* 4. Asegurar que los contenedores no tengan overflow: hidden que corte el texto */
+.panel, .dialogue-panel {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
