@@ -2823,39 +2823,36 @@ opacity:.7;
 
 }
 
-/* =========================
-   ADAPTACIÓN PARA CELULARES (CORREGIDA)
-========================= */
+/* --- CONFIGURACIÓN MÓVIL SEGURA --- */
 @media screen and (max-width: 768px) {
-    /* 1. Bloquea el scroll de la página completa */
+    /* 1. Ajuste del cuerpo: permitimos scroll mínimo para evitar pantalla en blanco */
     body {
-        overflow: hidden !important;
-        height: 100vh !important;
+        overflow-x: hidden;
+        overflow-y: auto; 
         margin: 0;
+        min-height: 100vh;
     }
 
-    /* 2. Escenas a pantalla completa y centradas */
+    /* 2. Las escenas ocupan el 100% de la pantalla sin esconder contenido */
     .scene {
-        position: absolute !important;
-        inset: 0 !important;
-        height: 100vh !important;
+        position: relative !important; /* Cambiamos de absolute a relative para que no se traslapen ni desaparezcan */
+        min-height: 100vh !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        overflow: hidden !important; 
+        padding: 20px 10px !important;
     }
 
-    /* 3. Paneles con scroll interno (para leer texto largo) */
+    /* 3. Paneles con scroll interno (si el texto es largo, se desplaza DENTRO) */
     .panel, 
     .dialogue-panel, 
     .birthday-panel, 
     .completion-panel {
-        max-height: 70vh !important; 
+        max-height: 70vh !important;
         overflow-y: auto !important; 
-        -webkit-overflow-scrolling: touch; 
         width: 90% !important;
-        margin: 10px auto !important;
+        margin: 0 auto !important;
         padding: 20px !important;
     }
 
@@ -2868,6 +2865,4 @@ opacity:.7;
         transform: scale(0.5) !important;
         transform-origin: center center;
     }
-    
-    .map-subtitle { font-size: 14px !important; }
 }
