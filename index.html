@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Constelación de Baal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <audio id="windSound" loop>
+
+    <source src="sounds/wind.mp3" type="audio/mpeg">
+
+</audio>
+
+
+<audio id="starSound">
+
+    <source src="sounds/star.mp3" type="audio/mpeg">
+
+</audio>
+
+
+<audio id="completeSound">
+
+    <source src="sounds/complete.mp3" type="audio/mpeg">
+
+</audio>
+
+<div id="background"></div>
+<div class="wind-particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+<div class="fog fog1"></div>
+<div class="fog fog2"></div>
+<div id="hud">
+
+    <div class="version">
+
+    Evento Especial
+    <br>
+    Constelación Celestial • 08/07
+
+</div>
+
+    <div class="progress">
+
+    <span class="progress-title">
+        ✦ Constelaciones
+    </span>
+
+
+    <span id="contador">
+        0 / 4
+    </span>
+
+
+</div>
+
+</div>
+
+<!-- ESCENA 1 -->
+<section class="scene active" id="scene1">
+
+    <div class="sparkle s1">✦</div>
+<div class="sparkle s2">✦</div>
+<div class="sparkle s3">✦</div>
+
+    <div class="panel">
+
+        <p class="evento">✦ Evento Especial ✦</p>
+
+        <h1>Constelación de Baal</h1>
+
+        <p class="subtitulo">
+            Cuando las estrellas celebran tu nombre
+        </p>
+
+        <h2>Feliz cumpleaños</h2>
+
+        <div class="hero-light"></div>
+
+        <h3>Baal</h3>
+
+        <button onclick="nextScene(2)">
+            ✦ Aceptar la misión ✦
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ESCENA 2 -->
+
+<section class="scene" id="scene2">
+
+    <h2>Prólogo</h2>
+
+    <p class="texto">
+
+        Hay personas que nacen...
+
+        y el mundo simplemente continúa.
+
+        <br><br>
+
+        Pero existen otras cuya existencia hace que todo sea un poquito más bonito.
+
+        <br><br>
+
+        Hoy...
+
+        todas las estrellas brillan por una sola razón.
+
+    </p>
+
+    <button onclick="nextScene(4)">
+    Continuar
+</button>
+
+</section>
+
+
+<!-- ESCENA 3 -->
+
+<section class="scene" id="scene3">
+
+    <h2>Próximamente...</h2>
+
+    <p class="texto">
+
+        Aquí comenzará la aventura.
+
+    </p>
+
+</section>
+
+
+
+
+<!-- ========================= -->
+<!-- MAPA DE CONSTELACIÓN -->
+<!-- ========================= -->
+
+<section class="scene" id="scene4">
+
+    <h1 class="map-title">
+        Constelación de Baal
+    </h1>
+
+    <p class="map-subtitle">
+        Descubre las cuatro estrellas que guardan los recuerdos que el cielo preparó para ti.
+    </p>
+
+
+<div class="moon-aura"></div>
+
+    <div class="constellation-container">
+
+
+        <svg class="constellation-lines"
+     viewBox="0 0 1000 700">
+
+
+    <line class="line-1"
+    x1="500" y1="120"
+    x2="260" y2="300"/>
+
+
+    <line class="line-2"
+    x1="500" y1="120"
+    x2="740" y2="300"/>
+
+
+    <line class="line-3"
+    x1="260" y1="300"
+    x2="500" y2="520"/>
+
+
+    <line class="line-4"
+    x1="740" y1="300"
+    x2="500" y2="520"/>
+
+
+    <line class="line-5"
+    x1="500" y1="520"
+    x2="500" y2="350"/>
+
+
+</svg>
+
+
+
+      <button class="star-node top star-1 reveal-star"
+onclick="openMission(1)">
+
+    <span>✦</span>
+
+    <div class="star-name">
+        La estrella que nació contigo
+    </div>
+
+</button>
+
+
+<button class="star-node left star-2 reveal-star"
+onclick="openMission(2)">
+    <span>✦</span>
+
+    <div class="star-name">
+    La viajera de infinitos mundos
+</div>
+
+</button>
+
+
+<button class="star-node right star-3 reveal-star"
+onclick="openMission(3)">
+    <span>✦</span>
+
+    <div class="star-name">
+        La voluntad de una estrella eterna
+    </div>
+
+</button>
+
+
+<button class="star-node bottom star-4 reveal-star"
+onclick="openMission(4)">
+    <span>✦</span>
+
+    <div class="star-name">
+    08/07
+</div>
+
+</button>
+
+
+        <div class="core-star" id="coreStar">
+
+    ◎
+
+</div>
+
+
+    </div>
+
+
+</section>
+
+<!-- ========================= -->
+<!-- DIÁLOGO DE CONSTELACIÓN -->
+<!-- ========================= -->
+
+<div class="dialogue-window" id="dialogueWindow">
+
+
+    <div class="dialogue-panel">
+
+
+        <div class="constellation-name">
+            ✦ Constelación desbloqueada ✦
+        </div>
+
+
+        <h2 id="dialogueTitle">
+            Título
+        </h2>
+
+
+        <p id="dialogueText">
+            Texto
+        </p>
+
+
+        <button id="dialogueButton"
+        onclick="nextDialogue()">
+
+            Continuar
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+<!-- ========================= -->
+<!-- CONSTELACIÓN COMPLETA -->
+<!-- ========================= -->
+
+<div class="completion-window" id="completionWindow">
+
+
+    <div class="completion-panel">
+
+
+        <p>
+            ✦ CONSTELACIÓN COMPLETA ✦
+        </p>
+
+
+        <h1>
+            Baal
+        </h1>
+
+
+        <span>
+            Hoy el cielo no celebra una estrella más...
+            celebra la existencia de una luz irrepetible, imprescindible e indispensable.
+        </span>
+
+
+        <button onclick="openFinalGift()">
+
+            Abrir regalo
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+<!-- ========================= -->
+<!-- CARTA FINAL -->
+<!-- ========================= -->
+
+<section class="scene" id="scene5">
+
+
+    <div class="birthday-panel">
+
+
+        <p class="evento">
+
+            ✦ Evento completado ✦
+
+        </p>
+
+
+
+        <h1>
+
+✦ Para Baal ✦
+
+</h1>
+
+
+
+        <div class="birthday-date">
+
+            08 / 07
+
+        </div>
+
+
+
+        <p class="birthday-text">
+
+
+            Hoy, el cielo entero parece haber detenido su curso solo para alinearse a tu favor. En el lenguaje de las estrellas, tu existencia es el evento más brillante de este año; como si las constelaciones de todo Teyvat hubieran conspirado únicamente para celebrar el día en que naciste.
+
+
+            <br><br>
+
+
+           No importa cuántas galaxias existan, para mí, no hay mapa astral más hermoso que el que forman tus pasos al caminar conmigo. Eres mi sol, mi constelación favorita y el motivo por el que, sin importar la distancia, siempre encuentro el camino y mi hogar en ti.
+
+
+            <br><br>
+
+
+              Celebrar que existes es mi regalo más grande, porque en este viaje que compartimos, tú eres el destino al que siempre quise llegar.
+
+
+            <br><br>
+
+
+
+        </p>
+
+
+
+        <h2>
+
+            Feliz cumpleaños a mi razón, a mi mundo entero y a la estrella que ilumina mi vida.
+
+        </h2>
+
+
+    </div>
+
+
+</section>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
+   
