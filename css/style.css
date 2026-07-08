@@ -2999,3 +2999,48 @@ opacity:.7;
         margin-top: 20px !important;
     }
 }
+
+@media screen and (max-width: 850px) {
+    /* Permitir que la escena se estire según su contenido */
+    .scene {
+        position: relative !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        justify-content: flex-start !important; /* El texto empieza arriba */
+        padding-top: 80px !important; /* Espacio para que no choque con el HUD */
+        overflow-y: visible !important; /* Permite scroll natural */
+    }
+}
+
+@media screen and (max-width: 850px) {
+    /* Habilitar scroll interno en el panel */
+    .panel, .birthday-panel, .completion-panel {
+        width: 90% !important;
+        height: auto !important; /* Se ajusta al texto */
+        max-height: 70vh !important; /* Nunca pasará del 70% de la pantalla */
+        overflow-y: auto !important; /* Si el texto es largo, aquí aparecerá la barra de scroll */
+        padding: 20px !important;
+        margin: 20px auto !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    /* 1. Centrar todo verticalmente en lugar de pegarlo al tope */
+    .scene {
+        justify-content: center !important; 
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* 2. Reducir el espacio debajo del título/subtítulo */
+    .map-subtitle {
+        margin-bottom: 20px !important; 
+    }
+
+    /* 3. Eliminar el margen superior de la constelación para que suba */
+    .constellation-container {
+        margin-top: 0px !important;
+        /* Si sientes que sigue siendo muy grande, ajusta un poco este scale */
+        transform: scale(0.6) !important; 
+    }
+}
