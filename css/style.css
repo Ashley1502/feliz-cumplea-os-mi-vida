@@ -2823,40 +2823,34 @@ opacity:.7;
 
 }
 
-/* --- CONFIGURACIÓN MÓVIL DEFINITIVA --- */
+/* --- ADAPTACIÓN MÓVIL SIN ROMPER LA LÓGICA --- */
 @media screen and (max-width: 768px) {
-    /* 1. Bloqueamos el scroll del body para que no se mueva toda la página */
-    body {
-        overflow: hidden !important; 
-        height: 100vh !important;
-    }
-
-    /* 2. Mantenemos el absolute, pero obligamos a la escena a ocupar toda la pantalla */
+    
+    /* 1. Ajustes de tamaño, NUNCA toques 'position' o 'display' para no romper el JS */
     .scene {
-        position: absolute !important;
-        inset: 0 !important;
-        height: 100vh !important;
-        overflow-y: auto !important; /* Si la escena es muy alta, scroll aquí */
-        padding: 20px 10px !important;
+        padding: 10px !important;
     }
 
-    /* 3. Paneles: les damos un max-height para que quepan */
+    /* 2. Limitamos el tamaño de los paneles para que no se salgan de la pantalla */
     .panel, 
     .dialogue-panel, 
     .birthday-panel, 
     .completion-panel {
-        width: 90% !important;
-        max-height: 70vh !important; /* Ocupa máximo el 70% de la altura */
-        overflow-y: auto !important; /* Scroll interno si el texto es largo */
-        margin: 50px auto !important; /* Espacio para que no toque los bordes */
+        width: 92% !important;
+        max-height: 80vh !important; /* Esto activa el scroll interno si el texto es largo */
+        overflow-y: auto !important;
+        padding: 20px !important;
     }
 
-    /* 4. Ajustes de escala */
+    /* 3. Reducimos el tamaño de la constelación para que no estorbe */
     .constellation-container {
-        transform: scale(0.4) !important;
-        transform-origin: center center;
+        transform: scale(0.35) !important;
+        margin-top: -50px !important;
     }
-    
-    h1 { font-size: 1.4rem !important; }
+
+    /* 4. Ajustes de fuentes para que no se vean gigantes */
+    h1 { font-size: 1.6rem !important; }
+    h2 { font-size: 18px !important; }
+    h3 { font-size: 30px !important; }
     .birthday-text { font-size: 16px !important; line-height: 1.5 !important; }
 }
