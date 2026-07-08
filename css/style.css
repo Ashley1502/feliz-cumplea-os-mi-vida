@@ -3027,3 +3027,37 @@ opacity:.7;
         margin-top: 20px;
     }
 }
+
+/* Corrección de emergencia para móviles */
+@media screen and (max-width: 768px) {
+    /* 1. Permitir que el cuerpo de la página se desplace verticalmente */
+    body {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+
+    /* 2. Cambiar la escena para que crezca según el contenido */
+    .scene {
+        min-height: 100vh;
+        height: auto !important; /* Esto es clave: le permite crecer */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Alinea todo arriba para que se vea bien */
+        padding-top: 50px;
+        padding-bottom: 50px;
+        position: relative !important;
+    }
+
+    /* 3. Asegurar que los paneles no tengan límites de altura */
+    .panel, .birthday-panel, .completion-panel {
+        height: auto !important;
+        max-height: none !important;
+        width: 90% !important;
+        margin: 20px auto !important;
+    }
+
+    /* 4. Ocultar el scrollbar si se ve mal (opcional) */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
