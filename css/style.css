@@ -2967,183 +2967,35 @@ opacity:.7;
 
 }
 
-/* ==================================================
-   ADAPTACIÓN CORREGIDA PARA CELULARES
-================================================== */
-@media screen and (max-width: 768px) {
-    /* Permitir scroll en la página */
-    body {
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 100%;
-        position: static;
-    }
-
-    /* Cambiamos a 'relative' para que el texto fluya y sea scrollable */
-    .scene {
-        position: relative;
-        min-height: auto;
-        height: auto;
-        padding: 40px 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s;
-    }
-
-    .scene.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* Ajustar los paneles para que no tengan límites de altura rígidos */
-    .panel,
-    .birthday-panel,
-    .completion-panel {
-        width: 95% !important;
-        margin: 20px auto;
-        max-height: none !important;
-        padding: 30px 15px !important;
-    }
-
-    /* Ajustar tamaños de letra para que quepan */
-    h1 { font-size: 1.8rem !important; }
-    h2 { font-size: 1.3rem !important; }
-    h3 { font-size: 2.5rem !important; }
-
-    .birthday-text {
-        font-size: 16px !important;
-        line-height: 1.6;
-    }
-
-    /* Constelación: ajustar tamaño sin forzar escala */
-    .constellation-container {
-        width: 100% !important;
-        height: auto !important;
-        transform: none !important;
-        margin-top: 20px;
-    }
-}
-
-/* Corrección de emergencia para móviles */
-@media screen and (max-width: 768px) {
-    /* 1. Permitir que el cuerpo de la página se desplace verticalmente */
-    body {
-        overflow-y: auto !important;
-        height: auto !important;
-    }
-
-    /* 2. Cambiar la escena para que crezca según el contenido */
-    .scene {
-        min-height: 100vh;
-        height: auto !important; /* Esto es clave: le permite crecer */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Alinea todo arriba para que se vea bien */
-        padding-top: 50px;
-        padding-bottom: 50px;
-        position: relative !important;
-    }
-
-    /* 3. Asegurar que los paneles no tengan límites de altura */
-    .panel, .birthday-panel, .completion-panel {
-        height: auto !important;
-        max-height: none !important;
-        width: 90% !important;
-        margin: 20px auto !important;
-    }
-
-    /* 4. Ocultar el scrollbar si se ve mal (opcional) */
-    ::-webkit-scrollbar {
-        display: none;
-    }
-}
-
-/* --- CORRECCIÓN DEFINITIVA PARA MÓVILES --- */
+/* --- BLOQUE ÚNICO Y CORREGIDO PARA MÓVILES --- */
 @media screen and (max-width: 850px) {
-    
-    /* 1. Aseguramos que el cuerpo permita el desplazamiento */
+    /* 1. Permitimos que el cuerpo sea scrollable */
     body {
         overflow-y: auto !important;
-        overflow-x: hidden !important;
         height: auto !important;
-        min-height: 100vh !important;
     }
 
-    /* 2. Cambiamos el comportamiento de las escenas: 
-          Dejamos de fijarlas (absolute) para que el navegador 
-          entienda que el contenido es alto y debe desplazarse. */
+    /* 2. EL CAMBIO CLAVE: Cambiamos 'absolute' a 'relative' aquí dentro */
     .scene {
         position: relative !important; 
         min-height: 100vh !important;
         height: auto !important; 
-        padding: 40px 15px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important; 
-        align-items: center !important;
+        padding: 60px 15px !important;
+        justify-content: flex-start !important; /* Para que el texto no esté perdido */
     }
 
-    /* 3. Liberamos los paneles de cualquier límite de altura */
-    .panel, 
-    .birthday-panel, 
-    .completion-panel {
+    /* 3. Liberamos los paneles de límites rígidos */
+    .panel, .birthday-panel, .completion-panel, .dialogue-panel {
         width: 95% !important;
         height: auto !important;
         max-height: none !important;
         margin: 20px auto !important;
-        padding: 25px 15px !important;
+        padding: 20px !important;
     }
 
-    /* 4. Ajustes específicos para modo horizontal (Landscape) */
-    @media (orientation: landscape) {
-        .scene {
-            padding-top: 20px !important;
-            padding-bottom: 20px !important;
-        }
-        .birthday-text {
-            font-size: 14px !important; /* Un poco más pequeño para leer mejor en horizontal */
-            line-height: 1.5 !important;
-        }
+    /* 4. Ajuste visual de la constelación para que quepa */
+    .constellation-container {
+        transform: scale(0.5) !important;
+        margin-top: 20px !important;
     }
-}
-
-/* --- CORRECCIÓN FINAL: Permitir scroll y contenido fluido --- */
-
-/* 1. Asegurar que el cuerpo de la página pueda desplazarse */
-body {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-}
-
-/* 2. Convertir las escenas de 'absolute' a 'relative' para que sigan el flujo del documento */
-.scene {
-    position: relative !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow-y: visible !important; /* Permite que el contenido se extienda */
-    padding-bottom: 50px !important;
-}
-
-/* 3. Ajustar paneles y diálogos para que sean scrollables si el texto es largo */
-.panel, 
-.dialogue-panel, 
-.completion-panel,
-.birthday-panel {
-    position: relative !important;
-    height: auto !important;
-    max-height: 80vh !important; /* Si el texto es gigante, el panel podrá hacerse scroll */
-    overflow-y: auto !important; /* ¡ESTO ES LO QUE ARREGLA EL VIDEO 3! */
-    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iPhone/Android */
-}
-
-/* 4. Asegurar que los contenedores no tengan overflow: hidden que corte el texto */
-.panel, .dialogue-panel {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
 }
